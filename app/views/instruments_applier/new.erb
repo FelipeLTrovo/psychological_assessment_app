@@ -1,0 +1,18 @@
+<section class="h-screen bg-white dark:bg-gray-900">
+  <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
+      <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Send an instrument to <%= @patient.name %></h2>
+      <form action="<%= instruments_applier_index_path %>", method="post">
+          <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+            <div class="w-full col-span-2">
+              <label for="instrument_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Instrument</label>
+              <%= select_tag "instrument_id", options_from_collection_for_select(Instrument.all, "id", "name"), class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500", required: true, prompt: "Select an instrument" %>
+            </div>
+            <input type="hidden" id="patient_id" name="patient_id" value="<%= @patient.id %>">
+          <button type="submit" class="py-2 px-3 flex items-center text-sm font-medium text-center text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+              Send instrument
+          </button>
+      </form>
+      <%= link_to "Back to patients", patients_path, class: "py-2 px-3 flex items-center text-sm font-medium text-center text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" %>
+  </div>
+</section>
+
