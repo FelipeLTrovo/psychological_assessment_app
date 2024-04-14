@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   resources :patients
   resources :questions
   resources :instruments
+  resources :instruments_applications
   resources :instruments_applier, only: %i[new create]
-  resources :instruments_solver, only: %i[index new create]
+  resources :instruments_solver, only: %i[index new create show]
   devise_for :psychologists, controllers: { registrations: 'psychologists/registrations'  }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -12,5 +13,5 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  root "home#index"
+  root "instruments_applications#index"
 end
