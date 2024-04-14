@@ -1,29 +1,39 @@
-<div class='col-start-2 text-center bg-teal-500 text-white shadow-md rounded px-8 pt-6 pb-8 mt-4 mb-4 ml-28 w-full max-w-xs'>
-
-  <h2 class='font-semibold text-xl tracking-tight mt-6'>Log in</h2>
-
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'text-black w-full mt-4' %>
-    <%= f.label :email %><br />
+<div id="authentication-modal" tabindex="-1"class="overflow-y-auto overflow-x-hidden top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                    Sign in to our platform
+                </h3>
+            </div>
+            <div class="p-4 md:p-5">
+                <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                <%= render "devise/shared/error_messages", resource: resource %>
+                    <div>
+                        <%= f.label :email, class: "mb-2 text-sm font-medium text-gray-900 dark:text-white" %><br />
+                        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white", require: true %>
+                    </div>
+                    <div>
+                        <%= f.label :password, class: "mb-2 text-sm font-medium text-gray-900 dark:text-white" %><br />
+                        <%= f.password_field :password, autocomplete: "current-password", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" %>
+                    </div>
+                    <div class="flex justify-between">
+                        <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                                <% if devise_mapping.rememberable? %>
+                                  <%= f.check_box :remember_me, class: "w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" %>
+                            </div>
+                                  <%= f.label :remember_me, class: "ms-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+                                <% end %>
+                          </div>
+                        <a href="<%= new_password_path(resource_name) %>" class="text-sm text-blue-700 hover:underline dark:text-blue-500">Lost Password?</a>
+                    </div>
+                    <%= f.submit "Log in", class: "w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
+                    <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
+                        Not registered? <a href="<%= new_registration_path(resource_name) %>" class="text-blue-700 hover:underline dark:text-blue-500">Create account</a>
+                    </div>
+                <% end %>
+            </div>
+        </div>
     </div>
-
-    <div class="field">
-    <%= f.password_field :password, autocomplete: "current-password", class: 'text-black w-full mt-4' %>
-    <%= f.label :password %><br />
-    </div>
-
-    <% if devise_mapping.rememberable? %>
-      <div class="field w-full mt-4">
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me, class: 'ml-2' %>
-      </div>
-    <% end %>
-
-    <div class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-4">
-      <%= f.submit "Log in" %>
-    </div>
-  <% end %>
-
-  <%= render "devise/shared/links" %>
-</div>
+</div> 
