@@ -1,6 +1,7 @@
 class Patient < ApplicationRecord
   has_many :instruments
 
+  validates :name, :email, :cpf, :birthdate, presence: true
   validates :email, :cpf, uniqueness: true
 
   before_create :generate_secure_uuid
