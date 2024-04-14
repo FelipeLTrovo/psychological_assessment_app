@@ -17,7 +17,8 @@ class PatientsController < ApplicationController
   end
 
   def create
-    @patient = Patient.new(patient_params)
+    @form = PatientForm.new(patient_params)
+    @patient = @form.save
 
     if @patient.save
       redirect_to patient_url(@patient), notice: "Patient was successfully created."
@@ -27,7 +28,9 @@ class PatientsController < ApplicationController
   end
 
   def update
-    if @patient.update(patient_params)
+    @form = PatientForm.new(patient_params.merge(id: params[:id])).update
+
+    if @patient
       redirect_to patient_url(@patient), notice: "Patient was successfully updated."
     else
       render :edit, status: :unprocessable_entity

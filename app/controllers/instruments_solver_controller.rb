@@ -3,15 +3,14 @@ class InstrumentsSolverController < ApplicationController
   before_action :set_patient, :validate_patient_access, only: %i[index new]
 
   def index
-    #@patient = Patient.find(params[:patient_id])
   end
 
   def new
+    PatientForm.new(patient_params.merge(id: @patient.id)).update
     InstrumentsSolverService.new(application: @application).call
   end
 
   def create
-    #@instrument = Instrument.find(params[:instrument_id])
     InstrumentsSolverService.new(application: @application, answer_points: answers_points_params).call
     redirect_to instruments_solver_path(@application), notice: "Instrument application has been successfully submitted."
   end
@@ -28,6 +27,10 @@ class InstrumentsSolverController < ApplicationController
 
   def set_patient
     @patient = @application.patient
+  end
+
+  def patient_params
+    params.permit(:name, :email, :cpf, :birthdate)
   end
 
   def validate_patient_access
