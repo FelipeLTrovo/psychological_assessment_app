@@ -1,0 +1,75 @@
+<section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5 antialiased">
+    <div class="h-full mx-auto max-w-screen-2xl px-4 lg:px-12">
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="p-4">Patient</th>
+                            <th scope="col" class="p-4">Instrument</th>
+                            <th scope="col" class="p-4">Status</th>
+                            <th scope="col" class="p-4">Score</th>
+                            <th scope="col" class="p-4">Last Update</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% @instrument_applications.each do |application| %>
+                        <tr class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
+                              <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                  <div class="flex items-center mr-3">
+                                      <%= application.patient.name %>
+                                  </div>
+                              </th>
+                              <td class="px-4 py-3">
+                                  <span class="bg-primary-100 text-primary-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">
+                                    <%= application.instrument.name %>
+                                  </span>
+                              </td>
+                              <td class="px-4 py-3">
+                                  <span class="bg-primary-100 text-primary-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">
+                                    <%= application.status %>
+                                  </span>
+                              </td>
+
+                              <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                  <div class="flex items-center">
+                                  <% 15.times do |index| %>
+                                        <svg class="w-5 h-5 text-yellow-400" fill=<%= (index+1) <= application.score.to_i ? "currentColor" : "" %> viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                        </svg>
+                                      <% end %>
+                                      <span class="text-gray-500 dark:text-gray-400 ml-1">
+                                        <%= application.score %>
+                                      </span>
+                                  </div>
+                              </td>
+                              <td class="px-4 py-3"><%= application.updated_at.strftime("%d/%m/%Y") %></td>
+                              <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                  <div class="flex items-center space-x-4">
+                                      <a href="<%= instruments_application_path(application) %>" type="button" class="py-2 px-3 flex items-center text-sm font-medium text-center text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                                          <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="currentColor" class="w-4 h-4 mr-2 -ml-0.5">
+                                              <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
+                                              <path fill-rule="evenodd" clip-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 010-1.113zM17.25 12a5.25 5.25 0 11-10.5 0 5.25 5.25 0 0110.5 0z" />
+                                          </svg>
+                                          Show
+                                      </a>
+                                      <span>
+                                        <%= button_to "Delete", instruments_application_path(application), method: :delete, class: "flex items-center text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900" %>
+                                      </span>
+                                  </div>
+                              </td>
+                            </tr>
+                          <% end %>
+                    </tbody>
+                </table>
+            </div>
+            <nav class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4" aria-label="Table navigation">
+                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                    Showing
+                    <span class="font-semibold text-gray-900 dark:text-white"><%= @instrument_applications.size %></span>
+                    of
+                    <span class="font-semibold text-gray-900 dark:text-white"><%= @instrument_applications.size %></span>
+                </span>
+            </nav>
+        </div>
+    </div>
+</section>
