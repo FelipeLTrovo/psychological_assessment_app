@@ -12,11 +12,12 @@ class QuestionForm
   def save
     return false if invalid?
 
-    question = Question.create(text: text)
+    question = Question.new(text: text)
     question.answers << Answer.create(text: answer_1, points: 3)
     question.answers << Answer.create(text: answer_2, points: 2)
     question.answers << Answer.create(text: answer_3, points: 1)
     question.answers << Answer.create(text: answer_4, points: 0)
+    question.save
     question
   end
 

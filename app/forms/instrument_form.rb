@@ -13,12 +13,13 @@ class InstrumentForm
   def save
     return false if invalid?
 
-    instrument = Instrument.create(name: name)
+    instrument = Instrument.new(name: name)
     instrument.questions << Question.find(question_1)
     instrument.questions << Question.find(question_2)
     instrument.questions << Question.find(question_3)
     instrument.questions << Question.find(question_4)
     instrument.questions << Question.find(question_5)
+    instrument.save
     instrument
   end
 
