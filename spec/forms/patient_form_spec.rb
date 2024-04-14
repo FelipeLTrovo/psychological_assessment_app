@@ -69,7 +69,7 @@ RSpec.describe PatientForm, type: :model do
                           name: '',
                           email: 'jane.doe@gmail.com',
                           cpf: '187652257-3',
-                          birthdate: Date.yesterday
+                          birthdate: '10/04/2024'.to_date
                        }
       
       it 'should not update a patient' do
@@ -81,7 +81,7 @@ RSpec.describe PatientForm, type: :model do
         expect(patient.name).to eq('John Doe')
         expect(patient.email).to_not eq('jane.doe@gmail.com')
         expect(patient.cpf).to_not eq('187652257-3')
-        expect(patient.birthdate).to_not eq(Date.yesterday)
+        expect(patient.birthdate).to_not eq('10/04/2024'.to_date)
       end
     end
   end

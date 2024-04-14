@@ -27,6 +27,10 @@
                   <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400"><%= @patient.cpf %></dd>
                   <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Date of birth</dt>
                   <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400"><%= @patient.birthdate %></dd>
+                  <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Instruments</dt>
+                  <% @patient.instrument_applications.map{|i| i.instrument}.uniq.each do |instrument| %>
+                    <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400"><%= instrument.name %></dd>
+                  <% end %>
               </dl>
               <div class="flex justify-between items-center">
                   <div class="flex items-center space-x-3 sm:space-x-4">

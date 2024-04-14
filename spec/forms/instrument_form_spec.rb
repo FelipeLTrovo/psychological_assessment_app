@@ -2,20 +2,23 @@ require 'rails_helper'
 
 RSpec.describe InstrumentForm, type: :model do
   before :all do
-    5.times do
-      Question.new.save(validate: false)
+    @question = Question.new
+    @question.text = 'My question'
+    4.times do 
+      @question.answers << Answer.new(text: 'My answer', points: 2)
     end
+    @question.save
   end
   
   context 'with valid params' do
     describe '#save' do
       params = {
                  name: 'My instrument',
-                 question_1: '1',
-                 question_2: '2',
-                 question_3: '3',
-                 question_4: '4',
-                 question_5: '5'
+                 question_1: 1,
+                 question_2: 2,
+                 question_3: 3,
+                 question_4: 4,
+                 question_5: 5
                }
 
       it 'should create an instrument' do
@@ -26,19 +29,19 @@ RSpec.describe InstrumentForm, type: :model do
     describe '#update' do
       params = {
                    name: 'My instrument',
-                   question_1: '1',
-                   question_2: '2',
-                   question_3: '3',
-                   question_4: '4',
-                   question_5: '5'
+                   question_1: 1,
+                   question_2: 2,
+                   question_3: 3,
+                   question_4: 4,
+                   question_5: 5
                 }
       updated_params = {
                           name: 'My updated instrument',
-                          question_1: '5',
-                          question_2: '4',
-                          question_3: '2',
-                          question_4: '3',
-                          question_5: '1'
+                          question_1: 5,
+                          question_2: 4,
+                          question_3: 2,
+                          question_4: 3,
+                          question_5: 1
                        }
       
       it 'should update an instrument' do
@@ -61,11 +64,11 @@ RSpec.describe InstrumentForm, type: :model do
     describe '#save' do
       params = {
                  name: '',
-                 question_1: '1',
-                 question_2: '2',
-                 question_3: '3',
-                 question_4: '4',
-                 question_5: '5'
+                 question_1: 1,
+                 question_2: 2,
+                 question_3: 3,
+                 question_4: 4,
+                 question_5: 5
                }
 
       it 'should not create an instrument' do
@@ -76,19 +79,19 @@ RSpec.describe InstrumentForm, type: :model do
     describe '#update' do
       params = {
                    name: 'My instrument',
-                   question_1: '1',
-                   question_2: '2',
-                   question_3: '3',
-                   question_4: '4',
-                   question_5: '5'
+                   question_1: 1,
+                   question_2: 2,
+                   question_3: 3,
+                   question_4: 4,
+                   question_5: 5
                 }
       updated_params = {
                           name: '',
-                          question_1: '5',
-                          question_2: '4',
-                          question_3: '2',
-                          question_4: '3',
-                          question_5: '1'
+                          question_1: 5,
+                          question_2: 4,
+                          question_3: 2,
+                          question_4: 3,
+                          question_5: 1
                        }
       
       it 'should not update an instrument' do

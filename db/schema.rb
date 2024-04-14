@@ -75,15 +75,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_13_210125) do
 
   create_table "questions", force: :cascade do |t|
     t.string "text"
-    t.integer "instrument_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["instrument_id"], name: "index_questions_on_instrument_id"
   end
 
   add_foreign_key "answers", "questions"
   add_foreign_key "instruments_questions", "instruments"
   add_foreign_key "instruments_questions", "questions"
   add_foreign_key "patients", "instruments"
-  add_foreign_key "questions", "instruments"
 end

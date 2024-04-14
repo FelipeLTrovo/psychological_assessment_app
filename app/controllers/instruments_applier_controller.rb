@@ -1,4 +1,5 @@
 class InstrumentsApplierController < ApplicationController
+  before_action :authenticate_psychologist!
   before_action :set_patient, only: %i[new create]
 
   def new

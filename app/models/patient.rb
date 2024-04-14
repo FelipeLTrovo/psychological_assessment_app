@@ -1,5 +1,5 @@
 class Patient < ApplicationRecord
-  has_many :instruments
+  has_many :instrument_applications
 
   validates :name, :email, :cpf, :birthdate, presence: true
   validates :email, :cpf, uniqueness: true
