@@ -1,0 +1,50 @@
+<% if @instrument.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(@instrument.errors.count, "error") %> prohibited this instrument from being saved:</h2>
+
+      <ul>
+        <% @instrument.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+<section class="h-screen bg-white dark:bg-gray-900">
+  <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
+      <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Add a new instrument</h2>
+      <form action="<%= instruments_path %>", method="post">
+          <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+              <div class="w-full col-span-2">
+                  <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                  <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="true">
+              </div>
+              <div class="w-full col-span-2">
+                  <label for="question_1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Question 1</label>
+                  <%= select_tag "question_1", options_from_collection_for_select(Question.all, "id", "text"), class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500", required: true, prompt: "Select a question" %>
+              </div>
+              <div class="w-full col-span-2">
+                  <label for="question_2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Question 2</label>
+                  <%= select_tag "question_2", options_from_collection_for_select(Question.all, "id", "text"), class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500", required: true, prompt: "Select a question" %>
+              </div>
+              <div class="w-full col-span-2">
+                  <label for="question_3" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Question 3</label>
+                  <%= select_tag "question_3", options_from_collection_for_select(Question.all, "id", "text"), class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500", required: true, prompt: "Select a question" %>
+              </div>
+              <div class="w-full col-span-2">
+                  <label for="question_4" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Question 4</label>
+                  <%= select_tag "question_4", options_from_collection_for_select(Question.all, "id", "text"), class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500", required: true, prompt: "Select a question" %>
+              </div>
+              <div class="w-full col-span-2">
+                  <label for="question_5" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Question 5</label>
+                  <%= select_tag "question_5", options_from_collection_for_select(Question.all, "id", "text"), class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500", required: true, prompt: "Select a question" %>
+              </div>
+              <div></div>
+              <div></div>
+          <button type="submit" class="py-2 px-3 flex items-center text-sm font-medium text-center text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+              Add instrument
+          </button>
+      </form>
+      <%= link_to "Back to instruments", instruments_path, class: "py-2 px-3 flex items-center text-sm font-medium text-center text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" %>
+  </div>
+</section>
+
