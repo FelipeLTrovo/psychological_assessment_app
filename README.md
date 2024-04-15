@@ -1,4 +1,4 @@
-# Psychological_Assessment
+# Psychological Assessment
 
 ![image](https://github.com/FelipeLTrovo/psychological_assessment_app/assets/15835917/06a38fcb-d3f9-4f5c-b049-0a33aea98f79)
 
@@ -10,7 +10,7 @@ A simple application for psychologists to apply an instrument to a patient.
 As of now, the application presents the following features:
 
 - Register, show, edit and delete Psychologists, Patients, Instruments, Questions, Answers and Instrument Applications.
-- A psycologist is able to send an instrument to a patient email and see its score after the instrument application is finished..
+- A psycologist is able to send an instrument to a patient email and see its score after the instrument application is finished.
 - A patient is able to resolve the instrument by clicking on the link sent to his email.
 
 **:warning: Hint:** This project is configured to run under Docker only.
