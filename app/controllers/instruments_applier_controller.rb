@@ -7,7 +7,9 @@ class InstrumentsApplierController < ApplicationController
 
   def create
     @instrument = Instrument.find(params[:instrument_id])
-    InstrumentsApplierService.new(patient: @patient, instrument: @instrument, psychologist: current_psychologist).call
+    if InstrumentsApplierService.new(patient: @patient, instrument: @instrument, psychologist: current_psychologist).call
+      redirect_to new_instruments_applier_path(@patient), notice: "Instrument was successfully sent."
+    end
   end
 
   private
