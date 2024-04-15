@@ -1,9 +1,27 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+psychologist = Psychologist.create(email: 'admin@admin.com', password: '123456')
+
+5.times do |i|
+  question = Question.new(text: "Sample Question_#{i}")
+  4.times do |j| 
+    question.answers << Answer.new(text: "Sample Answer_#{j}", points: ((j - 3) * -1))
+  end
+  question.save
+end
+
+instrument = Instrument.new
+instrument.name = 'Sample Instrument'
+5.times do |index|
+  instrument.questions << Question.all[(index)]
+end
+instrument.save
+
+patient = Patient.create(
+                          name: 'John Doe',
+                          email: 'john.doe@test.com',
+                          cpf: '432523525-34',
+                          birthdate: Date.today
+                        )
+
+application = InstrumentApplication.create(patient: patient,
+                                           instrument: instrument,
+                                           psychologist: psychologist, score: 11, status: 'finished')
