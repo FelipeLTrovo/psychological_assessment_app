@@ -9,6 +9,7 @@ COPY Gemfile.lock /myapp/Gemfile.lock
 COPY . /myapp
 RUN bundle install
 RUN bundle update
+RUN bundle exec rails assets:precompile
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
