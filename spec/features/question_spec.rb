@@ -191,10 +191,10 @@ describe '#new' do
     visit new_question_path
     
     fill_in 'text', with: 'New question'
-    fill_in 'answer_1', with: Answer.all[0].text
-    fill_in 'answer_2', with: Answer.all[1].text
-    fill_in 'answer_3', with: Answer.all[2].text
-    fill_in 'answer_4', with: Answer.all[3].text
+    fill_in 'answer_1', with: 'Answer_1'
+    fill_in 'answer_2', with: 'Answer_2'
+    fill_in 'answer_3', with: 'Answer_3'
+    fill_in 'answer_4', with: 'Answer_4'
 
     
     click_button 'Add question'
@@ -202,10 +202,10 @@ describe '#new' do
     expect(current_path).to eq(question_path(Question.last))
     expect(page).to have_content('Question was successfully created.')
     expect(page).to have_content('New question')
-    expect(page).to have_content(Answer.all[0].text)
-    expect(page).to have_content(Answer.all[1].text)
-    expect(page).to have_content(Answer.all[2].text)
-    expect(page).to have_content(Answer.all[3].text)
+    expect(page).to have_content('Answer_1')
+    expect(page).to have_content('Answer_2')
+    expect(page).to have_content('Answer_3')
+    expect(page).to have_content('Answer_4')
   end
 
   it 'should take the user to Question index page if user clicks Back... button' do

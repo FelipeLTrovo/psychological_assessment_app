@@ -2,12 +2,14 @@ require 'rails_helper'
 
 RSpec.describe InstrumentForm, type: :model do
   before :all do
-    @question = Question.new
-    @question.text = 'My question'
-    4.times do 
-      @question.answers << Answer.new(text: 'My answer', points: 2)
+    5.times do
+      @question = Question.new
+      @question.text = 'My question'
+      4.times do 
+        @question.answers << Answer.new(text: 'My answer', points: 2)
+      end
+      @question.save
     end
-    @question.save
   end
   
   context 'with valid params' do

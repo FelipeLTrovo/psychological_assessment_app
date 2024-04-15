@@ -236,6 +236,21 @@ end
 describe '#new' do
   it 'should fill in the form and create an instrument and display its show page' do
     psychologist = Psychologist.create(email: 'doctor@test.com', password: '123456')
+    question = ''
+    5.times do
+      question = Question.new
+      question.text = 'My question'
+      4.times do 
+        question.answers << Answer.new(text: 'My answer', points: 2)
+      end
+      question.save
+    end
+    instrument = Instrument.new
+    instrument.name = 'My instrument'
+    5.times do 
+      instrument.questions << question
+    end
+    instrument.save
 
     login_as(psychologist)
 
